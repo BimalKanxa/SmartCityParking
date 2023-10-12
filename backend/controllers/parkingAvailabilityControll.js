@@ -7,24 +7,23 @@ import Parkingslot from "../model/parkingslots.js";
 export const parkingAvailability = async(req, res) =>{
     try {
         const data = await ParkingLocation.findOne({name: req.body.name})
-        const loc = data.address + " " + data.pincode+ " " + " " + "Bimal parking"
+        const loc = data.address + " " + data.pincode+ " " + " " + data.name
 
 
         const slotID = await Parkingslot.findOne({location: loc})
 
 
-        console.log(slotID)
-        // const availabilityDetails = {
-        //     location: "datalpara",
-        //     location_id: data._id,
-        //     slot_id: slotID,
-        //     ava: false
-        // }
+        const availabilityDetails = {
+            location: "datalpara",
+            location_id: data._id,
+            slot_id: slotID._id,
+            ava: false
+        }
 
-        // const newparkingAvailability = Parkingava(availabilityDetails);
-        // await newparkingAvailability.save();
+        const newparkingAvailability = Parkingava(availabilityDetails);
+        await newparkingAvailability.save();
 
-        return res.status(200).json("ni")
+        return res.status(200).json(availabilityDetails)
     } catch (e) {
         res.status(500).json({msg: "internal server error in this"});
     }
