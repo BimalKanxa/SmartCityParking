@@ -1,4 +1,4 @@
-import mongoose from "mongoose";
+import mongoose, { mongo } from "mongoose";
 
 
 const parkingAvaSchema = mongoose.Schema({
@@ -19,3 +19,8 @@ const parkingAvaSchema = mongoose.Schema({
         required: true
     }
 })
+
+
+const parkingava = mongoose.model("parkingava", parkingAvaSchema);
+
+export default parkingava;
