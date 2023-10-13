@@ -39,7 +39,7 @@
 .subfooter{
     
     /* background-color: #ffffe0; */
-    background: url("../../public/footerbg.jpg");
+    background: url("./footerbg.jpg");
     background-repeat: no-repeat;
     background-size: cover;
     /* width: 100%; */
