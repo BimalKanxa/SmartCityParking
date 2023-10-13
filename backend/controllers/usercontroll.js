@@ -57,28 +57,30 @@ export const login = async (req, res) => {
     }
 }
 
-
-// export const Users = async (req, res) => {
-//   try {
-//     const UsersData = await User.find({}, {_id:0, fname:1, phone:1, email:1})
-//     return res.status(200).json(UsersData)
-//   } catch (e) {
-//     return res.status(500).json({error: e})
-//   }
+//working on it
+export const userProfile = async (req, res) => {
+  try {
+    const user = req.body;
+    console.log(user)
+    const UsersData = await User.find({}, {_id:0, fname:1, phone:1, email:1})
+    return res.status(200).json(UsersData)
+  } catch (e) {
+    return res.status(500).json({error: e})
+  }
   
-// }
+}
 
 
 // user profile
-export const userProfile = async (req, res) => {
+// export const userProfile = async (req, res) => {
 
-    const user = await User.findById(req.user.id).select('-password');
+//     const user = await User.findById(req.body.id).select('-password');
 
-    res.status(200).json({
-        success: true,
-        user
-    })
-}
+//     res.status(200).json({
+//         success: true,
+//         user
+//     })
+// }
 
 // log out
 

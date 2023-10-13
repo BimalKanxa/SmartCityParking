@@ -65,7 +65,7 @@ function Register() {
         <MDBRow className='g-0'>
 
           <MDBCol md='6'>
-            <MDBCardImage src='./loginimg.jpg' alt="login form" className='rounded-start w-100'/>
+            <MDBCardImage src='./registerimage.jpg' alt="login form" className='rounded-start w-100'/>
           </MDBCol>
 
           <MDBCol md='6'>

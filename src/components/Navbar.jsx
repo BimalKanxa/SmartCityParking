@@ -58,8 +58,8 @@ function NavBar() {
               </NavLink>
             </li>
 
-              {isLoggedIn ? (
-              // Show Logout button when the user is logged in
+              {isLoggedIn ? ( <>
+              {/* // Show Logout button when the user is logged in */}
               <li className="nav-item">
               <NavLink
                 exact
@@ -71,6 +71,18 @@ function NavBar() {
                 Logout
               </NavLink>
             </li>
+            <li className="nav-item">
+                  <NavLink
+                    exact
+                    to="/profile"
+                    activeClassName="active"
+                    className="nav-links nav-contact"
+                    onClick={handleClick}
+                  >
+                    My Profile
+                  </NavLink>
+                </li>
+            </> 
             ) : (
               // Show Login and Register links when the user is not logged in
               <>
@@ -98,7 +110,7 @@ function NavBar() {
                 </li>
               </>
             )}
-            
+{/*             
             <li className="nav-item">
               <NavLink
                 exact
@@ -109,7 +121,8 @@ function NavBar() {
               >
                 My Profile
               </NavLink>
-            </li>
+            </li> */}
+            
           </ul>
           <div className="nav-icon" onClick={handleClick}>
             <i className={click ? "fas fa-times" : "fas fa-bars"}></i>
