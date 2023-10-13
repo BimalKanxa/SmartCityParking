@@ -1,16 +1,30 @@
-import { useState } from "react";
-import { NavLink } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { NavLink, useNavigate } from "react-router-dom";
 import "../css/Navbar.css";
 
-
-
-
 function NavBar() {
+  let navigate = useNavigate()
   const [click, setClick] = useState(false);
-
+  const [isLoggedIn, setIsLoggedIn] = useState(false); 
 
   const handleClick = () => setClick(!click);
+  
+  const handleLogout = () => {
+    localStorage.removeItem('token')
+    setIsLoggedIn(false);
+    navigate('/')
+  };
 
+  const checkLoginStatus = () => {
+    const token = localStorage.getItem("token");
+    setIsLoggedIn(!!token);
+  };
+
+    // Check for login status when the component mounts
+      // Check for login status when the component mounts
+  useEffect(() => {
+    checkLoginStatus();
+  }); 
   return (
     <>
       <nav className="navbar" id="navbar">
@@ -19,9 +33,7 @@ function NavBar() {
            <h3>Smart City Parking</h3>
           </NavLink>
 
-          <ul className={click ? "nav-menu active" : "nav-menu"}>
-         
-        
+          <ul className={click ? "nav-menu active" : "nav-menu"}> 
             
           <li className="nav-item">
               <NavLink
@@ -45,28 +57,47 @@ function NavBar() {
                 Bike Spaces
               </NavLink>
             </li>
-            <li className="nav-item">
+
+              {isLoggedIn ? (
+              // Show Logout button when the user is logged in
+              <li className="nav-item">
               <NavLink
                 exact
                 to="/login"
                 activeClassName="active"
                 className="nav-links"
-                onClick={handleClick}
+                onClick={handleLogout}
               >
-                Login
+                Logout
               </NavLink>
             </li>
-            <li className="nav-item">
-              <NavLink
-                exact
-                to="/register"
-                activeClassName="active"
-                className="nav-links nav-contact"
-                onClick={handleClick}
-              >
-                Register
-              </NavLink>
-            </li>
+            ) : (
+              // Show Login and Register links when the user is not logged in
+              <>
+                <li className="nav-item">
+                  <NavLink
+                    exact
+                    to="/login"
+                    activeClassName="active"
+                    className="nav-links"
+                    onClick={handleClick}
+                  >
+                    Login
+                  </NavLink>
+                </li>
+                <li className="nav-item">
+                  <NavLink
+                    exact
+                    to="/register"
+                    activeClassName="active"
+                    className="nav-links nav-contact"
+                    onClick={handleClick}
+                  >
+                    Register
+                  </NavLink>
+                </li>
+              </>
+            )}
             
             <li className="nav-item">
               <NavLink
