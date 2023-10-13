@@ -28,11 +28,15 @@ const Login = () => {
         // Store the JWT in a secure way (e.g., localStorage or cookies) for future authenticated requests.
         navigate('/')
         // console.log(data.accessToken);
+    
         localStorage.setItem('token', data.accessToken)
+
+        sessionStorage.setItem('userEmail', formData.email);
+        // console.log(sessionStorage.getItem('userEmail'))
         // Redirect the user to a protected route or perform any other desired actions.
       } else {
         console.log('Login failed');
-      }
+      } 
     } catch (error) {
       console.error('Login error:', error);
     }

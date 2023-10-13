@@ -12,8 +12,10 @@ import { makePayment } from "../controllers/paymentcontroller.js";
 const router = express.Router()
 
 router.post('/register', register)
-router.post('/login', login)
+router.post('/login', login) 
 router.post('/logout', logout)
+// router.post('/admin', isAuthenticated, adminDashboard)
+
 router.get('/userProfile', userProfile)
 router.post('/registervehicle', registervehicle)
 router.post('/registerlocation', registreLocation)  //for admin

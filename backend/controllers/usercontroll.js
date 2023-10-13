@@ -25,6 +25,7 @@ export const register = async (req, res) => {
       phone: req.body.phone,
       email: req.body.email,
       password: hashedPassword,
+      post: req.body.post,
     };
 
     const newUser = User(user);
@@ -48,7 +49,7 @@ export const login = async (req, res) => {
         const newToken = new Token({token : refreshToken})
         await newToken.save();
 
-        return res.status(200).json({success: true, msg: "login succesfull...", accessToken : accessToken, refreshToken: refreshToken, fname: data.fname, lname: data.lname, email: data.email});
+        return res.status(200).json({success: true, msg: "login succesfull...", accessToken : accessToken, refreshToken: refreshToken, fname: data.fname, lname: data.lname, email: data.email, post:data.post});
       }
       else
         return res.status(401).json({success: false, flag:"invalid_credentials", msg: "invalid credentials"})
@@ -60,15 +61,29 @@ export const login = async (req, res) => {
 //working on it
 export const userProfile = async (req, res) => {
   try {
-    const user = req.body;
-    console.log(user)
-    const UsersData = await User.find({}, {_id:0, fname:1, phone:1, email:1})
+    const user = req.body.email;
+    // console.log(user)
+    // const UsersData = await User.findOne({}, {_id:0, fname:1, phone:1, email:1})
+    const UsersData = await User.findOne({}, {id: user.req.email})
+
     return res.status(200).json(UsersData)
   } catch (e) {
     return res.status(500).json({error: e})
   }
   
 }
+
+//copied from chatgpt
+// export const userProfile = async (req, res) => {
+//   try {
+//     const userId = req.body._id;
+//     const userData = await User.findOne({ _id: userId }, { _id: 0, fname: 1, phone: 1, email: 1 });
+//     return res.status(200).json(userData);
+//   } catch (e) {
+//     return res.status(500).json({ error: e });
+//   }
+// }
+
 
 
 // user profile
@@ -84,10 +99,10 @@ export const userProfile = async (req, res) => {
 
 // log out
 
-
+ 
 
 export const logout = async (req, res) => {
-  const refreshToken = req.body.refreshToken;
+  const refreshToken = req.body.refreshToken; 
 
   // Check if the provided refreshToken exists in the database
   const token = await Token.findOne({ token: refreshToken });
@@ -101,3 +116,15 @@ export const logout = async (req, res) => {
 
   return res.status(200).json({ success: true, msg: 'Logout successful' });
 };
+
+//for admin access
+// const sendTokenResponse = async (user, codeStatus, res) => {
+//   const token = await user.getJwtToken();
+//   res
+//       .status(codeStatus)
+//       .cookie('token', token, { maxAge: 60 * 60 * 1000, httpOnly: true })
+//       .json({
+//           success: true,
+//           role: user.post
+//       })
+// }
