@@ -7,22 +7,23 @@ import Parkingslot from "../model/parkingslots.js";
 export const parkingAvailability = async(req, res) =>{
     try {
         const data = await ParkingLocation.findOne({name: req.body.name})
-        const loc = data.address + " " + data.pincode+ " " + " " + "Bimal parking"
-
+            console.log(data)
+        const loc = data.address + " " + data.pincode+ " " + " " + data.name
+            // console.log(loc)
 
         const slotID = await Parkingslot.findOne({location: loc})
 
 
-        console.log(slotID)
-        // const availabilityDetails = {
-        //     location: "datalpara",
-        //     location_id: data._id,
-        //     slot_id: slotID,
-        //     ava: false
-        // }
+        // console.log(slotID)
+        const availabilityDetails = {
+            location: "datalpara",
+            location_id: data._id,
+            slot_id: slotID,
+            ava: false
+        }
 
-        // const newparkingAvailability = Parkingava(availabilityDetails);
-        // await newparkingAvailability.save();
+        const newparkingAvailability = Parkingava(availabilityDetails);
+        await newparkingAvailability.save();
 
         return res.status(200).json("ni")
     } catch (e) {

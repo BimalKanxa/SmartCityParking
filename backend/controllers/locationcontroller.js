@@ -28,3 +28,13 @@ export const registreLocation = async (req, res) => {
     res.status(500).json({ msg: "internal servre error" });
   }
 };
+
+export const getLocation = async(req, res) =>{
+  try {
+    const locations = await ParkingLocation.find()
+    return res.status(200).json({data: locations})
+  } catch (e) {
+    return res.status(500).json("internal server error")
+  }
+  
+}

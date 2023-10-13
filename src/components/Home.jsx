@@ -26,7 +26,7 @@ const Home = () => {
 
 </div>
 </div> 
-<CarParking/>
+{/* <CarParking/> */}
 <BikeParking/>
 <Footer/>
     </>
