@@ -1,4 +1,6 @@
-import ParkingLocation from "../model/parkinglocation.js";
+import parkingLocation from "../model/parkinglocation.js";
+import Parkingslot from "../model/parkingslots.js";
+
 
 export const registreLocation = async (req, res) => {
   try {
@@ -28,3 +30,25 @@ export const registreLocation = async (req, res) => {
     res.status(500).json({ msg: "internal servre error" });
   }
 };
+
+
+
+export const getLocation = async(req, res) =>{
+  try {
+    const locations = await parkingLocation.find()
+    return res.status(200).json(locations)
+  } catch (e) {
+    return res.status(500).json("internal server error")
+  }
+}
+
+
+
+export const getslotes = async(req, res) => {
+  try{
+    const slots = await Parkingslot.find()
+  }
+  catch(e){
+    return res.status(500).json("internal server error");
+  }
+}
