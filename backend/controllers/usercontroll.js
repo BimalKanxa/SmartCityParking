@@ -36,7 +36,7 @@ export const register = async (req, res) => {
 };
 
 export const login = async (req, res) => {
-  const data = await User.findOne({enrollment: req.body.enrollment});
+  const data = await User.findOne({email: req.body.email});
   if(data == null)
     return res.status(401).json({success: false, flag:"no_account", msg:"Don't have an account"})
   try {
@@ -48,7 +48,7 @@ export const login = async (req, res) => {
         const newToken = new Token({token : refreshToken})
         await newToken.save();
 
-        return res.status(200).json({success: true, msg: "login succesfull...", accessToken : accessToken, refreshToken: refreshToken, fname: data.fname, lname: data.lname, enrollment: data.enrollment});
+        return res.status(200).json({success: true, msg: "login succesfull...", accessToken : accessToken, refreshToken: refreshToken, fname: data.fname, lname: data.lname, email: data.email});
       }
       else
         return res.status(401).json({success: false, flag:"invalid_credentials", msg: "invalid credentials"})
@@ -57,13 +57,47 @@ export const login = async (req, res) => {
     }
 }
 
-
-export const Users = async (req, res) => {
+//working on it
+export const userProfile = async (req, res) => {
   try {
-    const UsersData = await User.find({}, {_id:0, fname:1, lname:1, phone:1, enrollment:1, semester:1})
-    return res.status(200). json(UsersData)
+    const user = req.body;
+    console.log(user)
+    const UsersData = await User.find({}, {_id:0, fname:1, phone:1, email:1})
+    return res.status(200).json(UsersData)
   } catch (e) {
     return res.status(500).json({error: e})
   }
   
 }
+
+
+// user profile
+// export const userProfile = async (req, res) => {
+
+//     const user = await User.findById(req.body.id).select('-password');
+
+//     res.status(200).json({
+//         success: true,
+//         user
+//     })
+// }
+
+// log out
+
+
+
+export const logout = async (req, res) => {
+  const refreshToken = req.body.refreshToken;
+
+  // Check if the provided refreshToken exists in the database
+  const token = await Token.findOne({ token: refreshToken });
+
+  if (!token) {
+    return res.status(401).json({ success: false, msg: 'Invalid refresh token' });
+  }
+
+  // If the refreshToken is found, remove it from the database to invalidate it
+  await token.remove();
+
+  return res.status(200).json({ success: true, msg: 'Logout successful' });
+};

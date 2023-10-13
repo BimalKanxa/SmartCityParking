@@ -14,7 +14,8 @@ import bodyParser from "body-parser"
 
 
 const app = express()
-const PORT = 8000 || process.env.PORT 
+const PORT = process.env.PORT || 8000;
+
 
 dotenv.config()
 
@@ -26,7 +27,7 @@ app.use(express.json())
 app.use(cors())
 app.use('/', Route)
 
-const URL = process.env.MONGODB_URI
+const URL = process.env.MONGODB_URI 
 
 connection(URL)
 

@@ -26,8 +26,13 @@ const Home = () => {
 
 </div>
 </div> 
+<<<<<<< HEAD
 {/* <CarParking/> */}
 <BikeParking/>
+=======
+<CarParking/>
+<BikeParking/> 
+>>>>>>> 4a185fb30e8311a73df3dd723d687cb7518a652e
 <Footer/>
     </>
   )

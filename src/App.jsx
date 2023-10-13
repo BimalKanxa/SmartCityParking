@@ -7,7 +7,8 @@ import Cars from './components/Cars';
 import Bikes from './components/Bikes';
 import Login from './components/Login';
 import Register from './components/Register';
-import UserProfile from './components/UserProfile';
+import UserCard from './components/UserCard';
+// import { ToastContainer } from 'react-toastify';
 
 
 
@@ -16,7 +17,7 @@ function App() {
 
   return (
     <>
-   
+    {/* <ToastContainer /> */}
       <Router>
         <Navbar />
 
@@ -26,7 +27,7 @@ function App() {
             <Route exact path="/bikes" element={<Bikes/>}/>
             <Route exact path="/login" element={<Login/>}/>
             <Route exact path="/register" element={<Register/>}/>
-            <Route exact path="/profile" element={<UserProfile/>}/>
+            <Route exact path="/profile" element={<UserCard/>}/>
           </Routes>
         
       </Router>
