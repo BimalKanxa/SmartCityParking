@@ -1,0 +1,57 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@500&family=Roboto&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+}
+
+.form-container {
+  max-width: 500px;
+  margin: 4% auto;
+  padding: 20px;
+  background: white;
+  border: 1px solid #ccc;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
+}
+
+.form-container label {
+  display: block;
+  margin-bottom: 5px;
+  font-size: 1.3rem;
+}
+
+.form-container input,
+.form-container textarea {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  background: #EEF9FF;
+}
+
+.reg-head {
+  margin-top: 4%;
+  margin-bottom: 8%;
+  text-align: center;
+  color: rgb(8, 57, 50);
+  text-decoration: underline;
+}
+
+.submit-button {
+  font-size: 1.5rem;
+  width: 100%;
+  margin-top: 2%;
+  padding: 13px;
+  font-family: "Roboto", sans-serif;
+  font-weight: 400;
+  background: #15A0D7;
+  color: white;
+  border: none;
+  border-radius: 10px;
+}/*# sourceMappingURL=jobApply.css.map */

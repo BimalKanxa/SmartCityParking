@@ -5,9 +5,9 @@ import {useEffect } from "react";
 
 export default function UserCard() {
 let navigate = useNavigate()
-  const handleLogout = () => {
-    localStorage.removeItem('token')
-    navigate('/')
+  const handleAdmin = () => {
+   
+    navigate('/admin')
   };
 
 
@@ -19,7 +19,7 @@ let navigate = useNavigate()
   .then(function (response) {
     // handle success
     console.log(response.data);
-  })
+  }) 
   .catch(function (error) {
     // handle error
     console.log(error);
@@ -30,16 +30,31 @@ let navigate = useNavigate()
     }, []);
 
   return (
-    <div className="user-card-container">
+    <div className="user-card-container" style={{ 
+      display: "flex",
+      margin: "auto",
+      height: "100%",
+      width: "100%",
+      backgroundColor:"#30c0e6",
+     
+  }}  >
+    <div className="cardContainer" style={{ boxShadow: "rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px",
+  padding : "3rem",
+  backgroundColor:"#eef9ff"
+  }}>
+
         <img src="./avatar.jpg" alt="" />
-        <div className="user-card-container-details">
-            <p><span>Name : </span> Name</p>
-            <p><span>Enrollment : </span> BCA2133008</p>
-            <p><span>Semester : </span>UG 5th sem </p>
-            <div className="logout-btn">
-                <button className='btn' onClick={handleLogout}>Logout</button>
+        <div className="user-card-container-details" style={{fontSize:"18px"}}>
+            <p><span>Name : </span> Admin</p>
+            <p><span>Email : </span> BCA2133008</p>
+            <p><span>Phone : </span>1234567890 </p>
+            <div className="logout-btn" >
+                <button className='btn' style={{ fontSize: "23px",
+    color: "blue"}} onClick={handleAdmin}>Admin Dashboard</button>
             </div>
         </div>
     </div>
+    </div>
+
   )
 }

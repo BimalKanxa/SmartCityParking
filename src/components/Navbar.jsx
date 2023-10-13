@@ -15,6 +15,8 @@ function NavBar() {
     navigate('/')
   };
 
+  
+
   const checkLoginStatus = () => {
     const token = localStorage.getItem("token");
     setIsLoggedIn(!!token);
