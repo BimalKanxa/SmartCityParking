@@ -1,10 +1,10 @@
 import parkingLocation from "../model/parkinglocation.js";
-import Parkingslot from "../model/parkingslots.js";
+// import Parkingslot from "../model/parkingslots.js";
 
 
 export const registreLocation = async (req, res) => {
   try {
-    const data = await ParkingLocation.findOne({ name: req.body.name });
+    const data = await parkingLocation.findOne({ name: req.body.name });
     if (data != null)
       return res
         .status(201)
@@ -21,7 +21,7 @@ export const registreLocation = async (req, res) => {
       bike_no_slot: req.body.bike_no_slot,
     };
 
-    const newLocation = ParkingLocation(locationDetails);
+    const newLocation = parkingLocation(locationDetails);
     await newLocation.save();
     return res
       .status(200)
@@ -31,16 +31,7 @@ export const registreLocation = async (req, res) => {
   }
 };
 
-<<<<<<< HEAD
-export const getLocation = async(req, res) =>{
-  try {
-    const locations = await ParkingLocation.find()
-    return res.status(200).json({data: locations})
-  } catch (e) {
-    return res.status(500).json("internal server error")
-  }
-  
-=======
+
 
 
 export const getLocation = async(req, res) =>{
@@ -54,12 +45,12 @@ export const getLocation = async(req, res) =>{
 
 
 
-export const getslotes = async(req, res) => {
-  try{
-    const slots = await Parkingslot.find()
-  }
-  catch(e){
-    return res.status(500).json("internal server error");
-  }
->>>>>>> 709f831f224b285da1db07f70139075172a927c7
-}
+// export const getslotes = async(req, res) => {
+//   try{
+//     const slots = await Parkingslot.find()
+//   }
+//   catch(e){
+//     return res.status(500).json("internal server error");
+//   }
+
+// }
